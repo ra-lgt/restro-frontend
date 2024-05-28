@@ -1,0 +1,21 @@
+#Component Details ##
+Technology: wellmoe
+Project: frontend-web
+
+## Secrets ##
+secret_variable:
+  enabled: false
+  data:
+
+
+## Probes ##
+#readinessProbePath: /ping
+#livenessProbePath: /ping
+#healthtype: tcpsocket
+
+healthtype: tcpsocket
+
+#prometheus scrapping
+prometheus_scrapping:
+  enabled: false
+

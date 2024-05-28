@@ -1,0 +1,41 @@
+#Scaling Parameters
+hpa:
+  enabled: true
+  targetCPUUtilizationPercentage: 70
+  TargetAvgMemoryUtilization: 70
+replicaCount: 1
+maxReplicas: 2
+
+## Resource Limits ##
+resources:
+  limits:
+    cpu: "1"
+    memory: 0.8Gi
+  requests:
+    cpu: "50m"
+    memory: 0.5Gi
+
+## Ingress Configuration for Admin##
+ingress_private:
+  enabled: true
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/group.name: staging-apps-int
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  hosts:
+    wellmoe-frontend-web.oyah-staging.private:
+      - /
+
+## Envrionemnt Variables and configmap"
+environment_variable:
+  enabled: true
+  data:
+    APP: "wellmoe-frontend-web-staging"
+    LOG_LEVEL: "Information"
+    PORT: "80"
+    NEXT_PUBLIC_BASE_URL: "https://wellmoe-mweb-staging.oyah.io"
+
+

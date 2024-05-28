@@ -1,0 +1,42 @@
+#Scaling Parameters
+hpa:
+  enabled: true
+  targetCPUUtilizationPercentage: 70
+  TargetAvgMemoryUtilization: 70
+replicaCount: 2
+maxReplicas: 5
+
+## Resource Limits ##
+resources:
+  limits:
+    cpu: "1"
+    memory: 1.5Gi
+  requests:
+    cpu: "50m"
+    memory: 1Gi
+
+## Ingress Configuration for Admin##
+ingress_private:
+  enabled: true
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/group.name: prod-apps-int
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  hosts:
+    wellmoe-frontend-web.oyah-prod.private:
+      - /
+
+## Envrionemnt Variables and configmap"
+environment_variable:
+  enabled: true
+  data:
+    APP: "wellmoe-frontend-web-prod"
+    LOG_LEVEL: "Information"
+    PORT: "80"
+    NEXT_PUBLIC_BASE_URL: "https://store.wellmoe.com"
+
+
+
