@@ -4,9 +4,9 @@ const { Configuration, OpenAIApi } = require("openai");
 const Chatbox = ({ onClose }) => {
   const [messages, setMessages] = useState([]);
 
-  const configuration = new Configuration({
-    apiKey: "<YOUR OPENAI>",
-  });
+  // const configuration = new Configuration({
+  //   apiKey: "<YOUR OPENAI>",
+  // });
 
   const openai = new OpenAIApi(configuration);
 
