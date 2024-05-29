@@ -5,7 +5,7 @@ const Chatbox = ({ onClose }) => {
   const [messages, setMessages] = useState([]);
 
   const configuration = new Configuration({
-    apiKey: "sk-proj-RWjnbKPCa8XD8LJ0EeGdT3BlbkFJj3i6PNl7KNpt3C3bzhOp",
+    apiKey: "<YOUR OPENAI>",
   });
 
   const openai = new OpenAIApi(configuration);
