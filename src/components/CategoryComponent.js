@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import useWindowSize from "../hooks/useWindowSize";
 import getLang, { getLangServerSide, useLang } from "../../src/utils/locale";
-
 // props details
 // item => name,image,info
 // className => more specification for the container such as container width default is 48% we can make it 96% for bigger containers
@@ -17,6 +16,7 @@ const CategoryComponent = ({
   ...props
 }) => {
   // const lang = useLang();
+  
 
   const store =
     typeof window !== "undefined"
@@ -24,6 +24,7 @@ const CategoryComponent = ({
       : { serviceID: "", products: [] };
 
   const size = useWindowSize();
+  const isMobile = size.width <= 768;
   //GETTING COLOR
   const colorSchema = {
     backgroundColor: store?.backgroundColor ? store.backgroundColor : "#FCFCFF",
@@ -34,7 +35,7 @@ const CategoryComponent = ({
   return (
     <div
       dir={setRtl}
-      className={` px-[2.5px] py-1 pb-1.5 ${className} ${
+      className={` px-[2.5px] py-1 pb-1.5 ${isMobile?className:" px-[2.5px] py-1 pb-1.5 w-[30%] font-raleway"} ${
         lang == "ar" ? "font-cairo" : "font-raleway"
       }`}
       onClick={onClick}
